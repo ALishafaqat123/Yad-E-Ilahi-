@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.rizwan.tasbeehcounter">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_tasbeeh"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_tasbeeh"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name="com.rizwan.tasbeehcounter.ChallengeActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.rizwan.tasbeehcounter.HistoryActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.rizwan.tasbeehcounter.IncompleteSessionsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.rizwan.tasbeehcounter.DailyRoutineActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.rizwan.tasbeehcounter.CategoryActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.rizwan.tasbeehcounter.TasbeehActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/TasbeehBlackTheme" />
+
+        <activity
+            android:name="com.rizwan.tasbeehcounter.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+</manifest>
