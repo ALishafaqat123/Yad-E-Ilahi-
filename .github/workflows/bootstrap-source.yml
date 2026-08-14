@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'bootstrap/source.part_*'
+      - 'source-archives/*.zip'
 
 permissions:
   contents: write
@@ -16,18 +17,31 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Stop when bootstrap parts are already removed
-        id: parts
+      - name: Detect source input
+        id: source
         shell: bash
         run: |
-          if compgen -G 'bootstrap/source.part_*' > /dev/null; then
-            echo 'present=true' >> "$GITHUB_OUTPUT"
+          if compgen -G 'source-archives/*.zip' > /dev/null; then
+            echo 'kind=archive' >> "$GITHUB_OUTPUT"
+          elif compgen -G 'bootstrap/source.part_*' > /dev/null; then
+            echo 'kind=parts' >> "$GITHUB_OUTPUT"
           else
-            echo 'present=false' >> "$GITHUB_OUTPUT"
+            echo 'kind=none' >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Rebuild source archive
-        if: steps.parts.outputs.present == 'true'
+      - name: Expand direct source archive
+        if: steps.source.outputs.kind == 'archive'
+        shell: bash
+        run: |
+          ARCHIVE=$(find source-archives -maxdepth 1 -type f -name '*.zip' | sort | head -n 1)
+          mkdir -p /tmp/yad-source
+          unzip -q "$ARCHIVE" -d /tmp/yad-source
+          rsync -a --exclude='.github/' --exclude='source-archives/' /tmp/yad-source/ ./
+          rm -f "$ARCHIVE"
+          rmdir source-archives 2>/dev/null || true
+
+      - name: Rebuild chunked source archive
+        if: steps.source.outputs.kind == 'parts'
         shell: bash
         run: |
           cat $(find bootstrap -maxdepth 1 -type f -name 'source.part_*' | sort) | base64 -d > /tmp/yad-source.zip
@@ -35,9 +49,10 @@ jobs:
           unzip -q /tmp/yad-source.zip -d /tmp/yad-source
           rsync -a --exclude='.github/' --exclude='bootstrap/' /tmp/yad-source/ ./
           rm -f bootstrap/source.part_*
+          rmdir bootstrap 2>/dev/null || true
 
       - name: Commit extracted source
-        if: steps.parts.outputs.present == 'true'
+        if: steps.source.outputs.kind != 'none'
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
@@ -46,5 +61,5 @@ jobs:
           if git diff --cached --quiet; then
             exit 0
           fi
-          git commit -m 'Add Yad-E-Ilahi v1.1.0 challenge source'
+          git commit -m 'Expand Yad-E-Ilahi source archive'
           git push
