@@ -1,0 +1,55 @@
+name: Build Challenge APK
+
+on:
+  push:
+    branches:
+      - feature/challenges
+    paths-ignore:
+      - '**/*.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle 8.7
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: Add temporary compile font
+        shell: bash
+        run: |
+          mkdir -p app/src/main/res/font
+          curl -L --fail --retry 3 \
+            'https://raw.githubusercontent.com/google/fonts/main/ofl/notonastaliqurdu/NotoNastaliqUrdu%5Bwght%5D.ttf' \
+            -o app/src/main/res/font/jameel_noori_nastaleeq_regular.ttf
+          test -s app/src/main/res/font/jameel_noori_nastaleeq_regular.ttf
+
+      - name: Build unsigned release APK
+        run: gradle --no-daemon :app:assembleRelease
+
+      - name: Locate APK
+        shell: bash
+        run: |
+          find app/build/outputs/apk -type f -name '*.apk' -print
+          test -f app/build/outputs/apk/release/app-release-unsigned.apk
+
+      - name: Upload unsigned APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Yad-Elahi-v1.1.0-Challenges-Unsigned
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
+          if-no-files-found: error
