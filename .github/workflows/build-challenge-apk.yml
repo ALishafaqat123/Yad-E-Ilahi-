@@ -32,30 +32,46 @@ jobs:
         with:
           gradle-version: '8.7'
 
-      - name: Add temporary compile font
+      - name: Add verified Jameel Noori Nastaleeq
         shell: bash
         run: |
           mkdir -p app/src/main/res/font
           curl -L --fail --retry 3 \
-            'https://raw.githubusercontent.com/google/fonts/main/ofl/notonastaliqurdu/NotoNastaliqUrdu%5Bwght%5D.ttf' \
+            'https://huggingface.co/spaces/mohammedriza-rahman/AI-Buddy_translator/resolve/main/fonts/Jameel%20Noori%20Nastaleeq.ttf?download=true' \
             -o app/src/main/res/font/jameel_noori_nastaleeq_regular.ttf
-          test -s app/src/main/res/font/jameel_noori_nastaleeq_regular.ttf
+          echo '39c54f1646a6a4f68408f3a26400e457cb1e52226c284d8c4ab36a3363520e0f  app/src/main/res/font/jameel_noori_nastaleeq_regular.ttf' | sha256sum -c -
 
-      - name: Build unsigned release APK
-        run: gradle --no-daemon :app:assembleRelease
-
-      - name: Save unsigned APK to branch
+      - name: Prepare side-by-side test package
         shell: bash
         run: |
-          test -f app/build/outputs/apk/release/app-release-unsigned.apk
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('app/build.gradle')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('buildTypes {', "buildTypes {\n        debug { applicationIdSuffix '.challengetest' }")
+          p.write_text(s, encoding='utf-8')
+
+          p = Path('app/src/main/res/values/strings.xml')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('<string name="app_name">یادِ الٰہی</string>', '<string name="app_name">یادِ الٰہی — چیلنج ٹیسٹ</string>', 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Build signed debug APK
+        run: gradle --no-daemon :app:assembleDebug
+
+      - name: Save test APK to branch
+        shell: bash
+        run: |
+          test -f app/build/outputs/apk/debug/app-debug.apk
           mkdir -p builds
-          cp app/build/outputs/apk/release/app-release-unsigned.apk \
-            builds/Yad-Elahi-v1.1.0-Challenges-Unsigned.apk
+          cp app/build/outputs/apk/debug/app-debug.apk \
+            builds/Yad-Elahi-v1.1.0-Challenges-Test.apk
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -f builds/Yad-Elahi-v1.1.0-Challenges-Unsigned.apk
+          git add -f builds/Yad-Elahi-v1.1.0-Challenges-Test.apk
           if git diff --cached --quiet; then
             exit 0
           fi
-          git commit -m 'Build Yad-E-Ilahi v1.1.0 challenge APK'
+          git commit -m 'Build side-by-side Yad-E-Ilahi challenge test APK'
           git push
