@@ -368,7 +368,8 @@ public class TasbeehActivity extends Activity {
 
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.mashallah)
-                .setMessage(getString(R.string.completion_message, getCompletionName(), getCompletionCount()))
+                .setMessage(String.format(Locale.US, getString(R.string.completion_message),
+                        getCompletionName(), getCompletionCount()))
                 .setCancelable(false)
                 .setPositiveButton(R.string.finish_and_reset, (d, which) -> {
                     resetProgress();
@@ -475,7 +476,8 @@ public class TasbeehActivity extends Activity {
                         Math.min(sequenceRoundTarget, completedRounds + 1), sequenceRoundTarget,
                         stageIndex + 1, stageTargets.length));
             } else {
-                statusText.setText(getString(R.string.stage_status, stageIndex + 1, stageTargets.length));
+                statusText.setText(String.format(Locale.US, getString(R.string.stage_status),
+                        stageIndex + 1, stageTargets.length));
             }
         } else {
             modeTitleText.setText(displayTitle);
@@ -489,11 +491,12 @@ public class TasbeehActivity extends Activity {
         countText.setText(String.format(Locale.US, "%d", count));
         int currentTarget = getCurrentTarget();
         if (currentTarget > 0) {
-            progressText.setText(getString(R.string.progress_format, count, currentTarget));
-            progressRing.setProgress(Math.min(1f, count / (float) currentTarget));
+            progressText.setText(String.format(Locale.US, getString(R.string.progress_format),
+                    count, currentTarget));
+            progressRing.setCounter(count, currentTarget);
         } else {
             progressText.setText(R.string.free_count_label);
-            progressRing.setProgress(0f);
+            progressRing.setCounter(count, 0);
         }
     }
 
