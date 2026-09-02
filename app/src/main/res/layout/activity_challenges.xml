@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:orientation="vertical"
+        android:paddingLeft="18dp"
+        android:paddingTop="24dp"
+        android:paddingRight="18dp"
+        android:paddingBottom="30dp">
+
+        <Button
+            android:id="@+id/challengeBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@drawable/button_secondary"
+            android:text="مرکزی صفحہ"
+            android:textAllCaps="false"
+            android:textColor="@color/green_dark"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:text="چیلنج قبول کریں"
+            android:textColor="@color/green_dark"
+            android:textSize="29sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="اپنے لیے ذکر کا ہدف مقرر کریں، آہستہ آہستہ مکمل کریں"
+            android:textColor="#716957"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:gravity="right"
+            android:text="تجویز کردہ چیلنج"
+            android:textColor="@color/green_dark"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="ایپ کچھ ذاتی اہداف تجویز کرتی ہے۔ ہر تعداد بدلی جاسکتی ہے۔"
+            android:textColor="#6F675A"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/challengeSuggestionsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/settings_panel_background"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="اپنا ذکر خود شامل کریں"
+                android:textColor="@color/green_dark"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="right"
+                android:text="ذکر کے الفاظ اور اپنی مطلوبہ تعداد لکھیں۔"
+                android:textColor="#6F675A"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/customChallengeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:gravity="right"
+                android:hint="نام (اختیاری)، مثلاً میرا روزانہ درود"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/customChallengePhrase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="right"
+                android:hint="ذکر کے الفاظ لکھیں"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:textSize="19sp" />
+
+            <EditText
+                android:id="@+id/customChallengeTarget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:hint="تعداد"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textSize="21sp" />
+
+            <Button
+                android:id="@+id/addCustomChallengeButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/button_primary"
+                android:text="میرا چیلنج قبول کریں"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="right"
+            android:text="میرے قبول کیے گئے چیلنج"
+            android:textColor="@color/green_dark"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/acceptedChallengesEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="ابھی کوئی چیلنج قبول نہیں کیا گیا۔"
+            android:textColor="#716957"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/acceptedChallengesContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+</ScrollView>

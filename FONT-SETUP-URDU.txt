@@ -1,0 +1,9 @@
+جمیل نوری نستعلیق فونٹ سیٹ اپ
+
+فونٹ فائل شیئر پیکج میں شامل نہیں ہے۔ اپنی پہلے سے موجود TTF فائل کا نام یہ رکھیں:
+jameel_noori_nastaleeq_regular.ttf
+
+اور اسے یہاں رکھیں:
+app/src/main/res/font/jameel_noori_nastaleeq_regular.ttf
+
+styles.xml اور UrduFont.java پہلے ہی اسی resource نام کے لیے تیار ہیں۔

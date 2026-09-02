@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green_primary">#176B3A</color>
+    <color name="green_dark">#0C4625</color>
+    <color name="cream">#FFF9EE</color>
+    <color name="gold">#B17800</color>
+    <color name="amber_bright">#FFD166</color>
+    <color name="text_dark">#1C1C1C</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="dim_text">#242424</color>
+</resources>

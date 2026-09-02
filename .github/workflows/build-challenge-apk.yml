@@ -1,0 +1,77 @@
+name: Build Challenge APK
+
+on:
+  push:
+    branches:
+      - feature/challenges
+    paths-ignore:
+      - '**/*.md'
+      - 'builds/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle 8.7
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: Add verified Jameel Noori Nastaleeq
+        shell: bash
+        run: |
+          mkdir -p app/src/main/res/font
+          curl -L --fail --retry 3 \
+            'https://huggingface.co/spaces/mohammedriza-rahman/AI-Buddy_translator/resolve/main/fonts/Jameel%20Noori%20Nastaleeq.ttf?download=true' \
+            -o app/src/main/res/font/jameel_noori_nastaleeq_regular.ttf
+          echo '39c54f1646a6a4f68408f3a26400e457cb1e52226c284d8c4ab36a3363520e0f  app/src/main/res/font/jameel_noori_nastaleeq_regular.ttf' | sha256sum -c -
+
+      - name: Prepare side-by-side test package
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('app/build.gradle')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('buildTypes {', "buildTypes {\n        debug { applicationIdSuffix '.challengetest' }")
+          p.write_text(s, encoding='utf-8')
+
+          p = Path('app/src/main/res/values/strings.xml')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('<string name="app_name">یادِ الٰہی</string>', '<string name="app_name">یادِ الٰہی — چیلنج ٹیسٹ</string>', 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Build signed debug APK
+        run: gradle --no-daemon :app:assembleDebug
+
+      - name: Save test APK to branch
+        shell: bash
+        run: |
+          test -f app/build/outputs/apk/debug/app-debug.apk
+          mkdir -p builds
+          cp app/build/outputs/apk/debug/app-debug.apk \
+            builds/Yad-Elahi-v1.1.0-Challenges-Test.apk
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f builds/Yad-Elahi-v1.1.0-Challenges-Test.apk
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'Build side-by-side Yad-E-Ilahi challenge test APK'
+          git push

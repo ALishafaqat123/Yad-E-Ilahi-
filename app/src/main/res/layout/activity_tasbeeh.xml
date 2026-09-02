@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:keepScreenOn="true">
+
+    <FrameLayout
+        android:id="@+id/counterTapArea"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/tasbeeh_screen_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:id="@+id/counterContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp">
+
+            <TextView
+                android:id="@+id/modeTitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textColor="#C4C4C4"
+                android:textSize="19sp" />
+
+            <TextView
+                android:id="@+id/phraseText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:maxLines="7"
+                android:textColor="#F5F5F5"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/translationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:lineSpacingExtra="2dp"
+                android:maxLines="8"
+                android:textColor="#C8C0B5"
+                android:textSize="15sp" />
+
+            <FrameLayout
+                android:id="@+id/ringContainer"
+                android:layout_width="270dp"
+                android:layout_height="270dp"
+                android:layout_marginTop="12dp">
+
+                <com.rizwan.tasbeehcounter.ProgressRingView
+                    android:id="@+id/progressRing"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/countText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                   
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="0"
+                    android:textColor="#F4F4F4"
+                    android:textSize="88sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/progressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+               
+                android:text="0 / 100"
+                android:textColor="#C5C5C5"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/hintText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/tap_hint"
+                android:textColor="#9E9E9E"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="18dp"
+        android:paddingTop="24dp"
+        android:paddingRight="18dp">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/app_name" android:textColor="#F0F0F0" android:textSize="17sp" android:textStyle="bold" />
+        <TextView android:id="@+id/statusText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/status_chip_background" android:paddingLeft="11dp" android:paddingTop="6dp" android:paddingRight="11dp" android:paddingBottom="6dp" android:textColor="#FFD166" android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/controlPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/dark_control_panel_background"
+        android:orientation="horizontal"
+        android:padding="8dp">
+        <Button android:id="@+id/undoButton" style="@style/TasbeehControlButton" android:text="@string/undo_short" />
+        <Button android:id="@+id/resetButton" style="@style/TasbeehControlButton" android:text="@string/reset_short" />
+        <Button android:id="@+id/dimButton" style="@style/TasbeehControlButton" android:text="@string/dim_button" />
+        <Button android:id="@+id/vibrationButton" style="@style/TasbeehControlButton" android:text="@string/vibration_button_on" />
+        <Button android:id="@+id/homeButton" style="@style/TasbeehControlButton" android:text="@string/home_short" />
+    </LinearLayout>
+</FrameLayout>

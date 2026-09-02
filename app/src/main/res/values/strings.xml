@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">یادِ الٰہی</string>
+    <string name="select_category_hint">آج اللہ کی طرف ایک قدم</string>
+    <string name="back_to_home">مرکزی صفحہ</string>
+
+    <string name="post_prayer_title">نماز کے بعد کی تسبیح</string>
+    <string name="post_prayer_subtitle">سبحان اللہ، الحمدللہ، اللہ اکبر — ایک مکمل سلسلہ</string>
+    <string name="istighfar_category_title">استغفار</string>
+    <string name="istighfar_category_subtitle">سید الاستغفار اور بخشش و توبہ کے منتخب اذکار</string>
+    <string name="tasbeeh_category_title">تسبیح و تحمید</string>
+    <string name="tasbeeh_category_subtitle">سبحان اللہ سے شروع ہونے والے منتخب اذکار</string>
+    <string name="tawhid_category_title">توحید کے اذکار</string>
+    <string name="tawhid_category_subtitle">اللہ کی وحدانیت کے منتخب کلمات</string>
+
+    <string name="subhan_bihamdihi_title">سبحان اللہ وبحمدہ</string>
+    <string name="istighfar_title">استغفار اور توبہ</string>
+    <string name="tawhid_title">کلمۂ توحید</string>
+    <string name="simple_counter_title">ایک منٹ کا ذکر</string>
+    <string name="simple_counter_subtitle">اپنی پسند کا مختصر ذکر شروع کریں</string>
+    <string name="simple_counter_phrase">مختصر ذکر</string>
+    <string name="simple_counter_translation">اپنی پسند کا ذکر پڑھیں۔</string>
+
+    <string name="subhanallah_arabic">سُبْحَانَ اللّٰهِ</string>
+    <string name="alhamdulillah_arabic">اَلْحَمْدُ لِلّٰهِ</string>
+    <string name="allahu_akbar_arabic">اَللّٰهُ أَكْبَرُ</string>
+    <string name="subhanallah_translation">اللہ ہر عیب سے پاک ہے۔</string>
+    <string name="subhan_bihamdihi_arabic">سُبْحَانَ اللّٰهِ وَبِحَمْدِهِ</string>
+    <string name="istighfar_arabic">أَسْتَغْفِرُ اللّٰهَ وَأَتُوبُ إِلَيْهِ</string>
+    <string name="tawhid_arabic">لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</string>
+
+    <string name="use_reported_target">منقول تعداد استعمال کریں — %1$d مرتبہ</string>
+    <string name="use_starter_target">ابتدائی ہدف استعمال کریں — %1$d مرتبہ</string>
+    <string name="set_custom_target">اپنی تعداد مقرر کریں</string>
+    <string name="custom_target_for_text">%1$s کے لیے اپنی تعداد</string>
+    <string name="enter_target_message">1 سے 10 لاکھ تک کوئی تعداد لکھیں۔</string>
+    <string name="invalid_target">درست تعداد لکھیں</string>
+    <string name="post_prayer_default_option">معروف ترتیب — 33، 33، 34</string>
+    <string name="post_prayer_custom_option">تینوں کی تعداد خود مقرر کریں</string>
+    <string name="custom_sequence_title">اپنی ترتیب مقرر کریں</string>
+    <string name="custom_sequence_message">ہر ذکر کے سامنے مطلوبہ تعداد لکھیں۔</string>
+    <string name="start">شروع کریں</string>
+    <string name="cancel">منسوخ</string>
+
+    <string name="feedback_settings">ٹیپ اور تکمیل کی اطلاع</string>
+    <string name="vibration">ہر ٹیپ پر وائبریشن</string>
+    <string name="completion_sound">ذکر مکمل ہونے پر ہلکی آواز</string>
+    <string name="vibration_test">وائبریشن آزمائیں</string>
+    <string name="vibration_test_message">طاقتور دو دھڑکنوں والی وائبریشن بھیجی گئی</string>
+    <string name="vibration_test_failed">فون نے وائبریشن کمانڈ قبول نہیں کی۔ فون کی Sound and vibration سیٹنگ چیک کریں۔</string>
+    <string name="no_vibrator">اس فون پر وائبریشن موٹر دستیاب نہیں ملی</string>
+    <string name="home_safety_hint">کاؤنٹنگ صرف کھلی ہوئی تسبیح اسکرین پر فعال ہوگی۔ سوائپ شمار نہیں ہوگا۔</string>
+
+    <string name="tap_hint">گنتی کے لیے ہلکا ٹیپ کریں
+سوائپ شمار نہیں ہوگا — کنٹرول کے لیے انگلی کچھ دیر رکھیں</string>
+    <string name="target_mode_active">مقررہ حد</string>
+    <string name="free_count_active">آزاد کاؤنٹنگ</string>
+    <string name="stage_status">مرحلہ %1$d / %2$d</string>
+    <string name="progress_format">%1$d / %2$d</string>
+    <string name="free_count_label">آزاد گنتی</string>
+    <string name="stage_completed_toast">%1$s مکمل — اب %2$s پڑھیں</string>
+
+    <string name="mashallah">ماشاء اللہ 🌹</string>
+    <string name="completion_message">آپ نے “%1$s” کی مقررہ تعداد %2$d مکمل کرلی ہے۔</string>
+    <string name="finish_and_reset">مکمل کریں</string>
+    <string name="continue_counting">گنتی جاری رکھیں</string>
+
+    <string name="reset_title">گنتی صفر کریں؟</string>
+    <string name="reset_current_mode_message">اس ذکر کی موجودہ گنتی اور مرحلہ دوبارہ شروع ہوجائے گا۔</string>
+    <string name="yes">ہاں</string>
+    <string name="no">نہیں</string>
+
+    <string name="undo_short">↶
+واپس</string>
+    <string name="reset_short">⟳
+صفر</string>
+    <string name="dim_button">◐
+مدھم</string>
+    <string name="bright_button">◑
+روشن</string>
+    <string name="vibration_button_on">〰
+لرزش</string>
+    <string name="vibration_button_off">〰
+بند</string>
+    <string name="home_short">⌂
+مرکزی</string>
+</resources>
