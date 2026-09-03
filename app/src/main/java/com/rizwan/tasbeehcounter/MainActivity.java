@@ -3,18 +3,16 @@ package com.rizwan.tasbeehcounter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Gravity;
-import android.widget.Button;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends Activity {
     public static final String PREFS_NAME = "tasbeeh_prefs";
@@ -45,9 +43,8 @@ public class MainActivity extends Activity {
 
     private static final int MAX_TARGET = 1_000_000;
 
-    private SharedPreferences preferences;
-    private Switch vibrationSwitch;
-    private Switch soundSwitch;
+    private TextView todayCount;
+    private TextView streakCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,61 +52,59 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         UrduFont.applyToActivity(this);
 
-        preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        vibrationSwitch = findViewById(R.id.vibrationSwitch);
-        soundSwitch = findViewById(R.id.soundSwitch);
-        Button vibrationTestButton = findViewById(R.id.vibrationTestButton);
+        todayCount = findViewById(R.id.todayCount);
+        streakCount = findViewById(R.id.streakCount);
+        UrduFont.useDigitFont(todayCount, streakCount);
 
-        vibrationSwitch.setChecked(preferences.getBoolean(KEY_VIBRATION, true));
-        soundSwitch.setChecked(preferences.getBoolean(KEY_COMPLETION_SOUND, true));
+        setCategoryCount(R.id.istighfarTileSub, DhikrCatalog.CATEGORY_ISTIGHFAR);
+        setCategoryCount(R.id.tasbeehTileSub, DhikrCatalog.CATEGORY_TASBEEH);
+        setCategoryCount(R.id.tawhidTileSub, DhikrCatalog.CATEGORY_TAWHID);
 
-        vibrationSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
-                preferences.edit().putBoolean(KEY_VIBRATION, isChecked).apply());
-        soundSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->
-                preferences.edit().putBoolean(KEY_COMPLETION_SOUND, isChecked).apply());
-
-        vibrationTestButton.setOnClickListener(v -> {
-            if (!HapticHelper.hasVibrator(this)) {
-                Toast.makeText(this, R.string.no_vibrator, Toast.LENGTH_LONG).show();
-                return;
-            }
-            preferences.edit().putBoolean(KEY_VIBRATION, true).apply();
-            vibrationSwitch.setChecked(true);
-            boolean sent = HapticHelper.test(this, vibrationTestButton);
-            Toast.makeText(this,
-                    sent ? R.string.vibration_test_message : R.string.vibration_test_failed,
-                    Toast.LENGTH_LONG).show();
-        });
-
-        findViewById(R.id.dailyRoutineCard).setOnClickListener(v ->
-                startActivity(new Intent(this, DailyRoutineActivity.class)));
-        findViewById(R.id.challengeCard).setOnClickListener(v ->
-                startActivity(new Intent(this, ChallengeActivity.class)));
-        findViewById(R.id.historyCard).setOnClickListener(v ->
-                startActivity(new Intent(this, HistoryActivity.class)));
-        findViewById(R.id.dailyDuasCategoryCard).setOnClickListener(v ->
-                openCategory(DhikrCatalog.CATEGORY_DAILY_DUAS));
-        findViewById(R.id.postPrayerCard).setOnClickListener(v -> showPostPrayerChoice());
-        findViewById(R.id.istighfarCategoryCard).setOnClickListener(v ->
+        findViewById(R.id.postPrayerTile).setOnClickListener(v -> showPostPrayerChoice());
+        findViewById(R.id.istighfarTile).setOnClickListener(v ->
                 openCategory(DhikrCatalog.CATEGORY_ISTIGHFAR));
-        findViewById(R.id.tasbeehCategoryCard).setOnClickListener(v ->
+        findViewById(R.id.tasbeehTile).setOnClickListener(v ->
                 openCategory(DhikrCatalog.CATEGORY_TASBEEH));
-        findViewById(R.id.tawhidCategoryCard).setOnClickListener(v ->
+        findViewById(R.id.tawhidTile).setOnClickListener(v ->
                 openCategory(DhikrCatalog.CATEGORY_TAWHID));
-        findViewById(R.id.simpleCard).setOnClickListener(v -> startSimpleMode());
+        findViewById(R.id.duasRow).setOnClickListener(v ->
+                openCategory(DhikrCatalog.CATEGORY_DAILY_DUAS));
+        findViewById(R.id.simpleRow).setOnClickListener(v -> startSimpleMode());
+
+        BottomBar.attach(this, BottomBar.TAB_DHIKR);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        android.view.View resumeCard = findViewById(R.id.resumeCard);
+        BottomBar.attach(this, BottomBar.TAB_DHIKR);
+        refreshStats();
+        refreshResumeCard();
+    }
+
+    private void refreshStats() {
+        todayCount.setText(String.valueOf(DhikrStats.todayCount(this)));
+        streakCount.setText(String.valueOf(DhikrStats.streakDays(this)));
+    }
+
+    private void setCategoryCount(int viewId, String category) {
+        TextView view = findViewById(viewId);
+        if (view == null) return;
+        view.setText(String.format(Locale.US, getString(R.string.items_count),
+                DhikrCatalog.getItems(category).size()));
+    }
+
+    private void refreshResumeCard() {
+        View resumeCard = findViewById(R.id.resumeCard);
         TextView resumeTitle = findViewById(R.id.resumeTitle);
         TextView resumeProgress = findViewById(R.id.resumeProgress);
         List<LastSessionStore.Record> sessions = LastSessionStore.getIncompleteSessions(this);
         boolean hasSessions = !sessions.isEmpty();
-        resumeCard.setVisibility(hasSessions ? android.view.View.VISIBLE : android.view.View.GONE);
+        resumeCard.setVisibility(hasSessions ? View.VISIBLE : View.GONE);
         if (hasSessions) {
-            resumeTitle.setText("ادھورے اذکار جاری رکھیں — " + sessions.size());
+            resumeTitle.setText(sessions.size() == 1
+                    ? "جاری رکھیں — " + sessions.get(0).title
+                    : "ادھورے اذکار جاری رکھیں — " + sessions.size());
             resumeProgress.setText(makeResumeSummary(sessions));
             resumeCard.setOnClickListener(v ->
                     startActivity(new Intent(this, IncompleteSessionsActivity.class)));
@@ -235,7 +230,7 @@ public class MainActivity extends Activity {
         TextView label = new TextView(this);
         label.setText(labelRes);
         label.setTextSize(20f);
-        label.setTextColor(0xFF1C1C1C);
+        label.setTextColor(getColor(R.color.plaster));
         label.setGravity(Gravity.RIGHT);
         UrduFont.apply(label, this);
         holder.addView(label, new LinearLayout.LayoutParams(

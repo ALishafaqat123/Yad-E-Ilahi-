@@ -51,4 +51,18 @@ public final class UrduFont {
             }
         }
     }
+
+    /**
+     * Nastaleeq renders standalone numbers poorly, so views that show nothing but a
+     * number opt out of it. Call this after {@link #applyToActivity(Activity)},
+     * which would otherwise have already overwritten the typeface.
+     */
+    public static void useDigitFont(TextView... views) {
+        if (views == null) return;
+        for (TextView view : views) {
+            if (view == null) continue;
+            view.setTypeface(Typeface.SANS_SERIF);
+            view.setFontFeatureSettings("tnum");
+        }
+    }
 }

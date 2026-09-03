@@ -12,24 +12,38 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!--
+            The app theme is dark now. These five screens still carry hardcoded dark
+            text from v1, so they stay pinned to the old light theme until each one
+            is redesigned; dropping the pin would make their text invisible.
+        -->
         <activity
             android:name="com.rizwan.tasbeehcounter.ChallengeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLight" />
 
         <activity
             android:name="com.rizwan.tasbeehcounter.HistoryActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLight" />
 
         <activity
             android:name="com.rizwan.tasbeehcounter.IncompleteSessionsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLight" />
 
         <activity
             android:name="com.rizwan.tasbeehcounter.DailyRoutineActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLight" />
 
         <activity
             android:name="com.rizwan.tasbeehcounter.CategoryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLight" />
+
+        <activity
+            android:name="com.rizwan.tasbeehcounter.ProfileActivity"
             android:screenOrientation="portrait" />
 
         <activity

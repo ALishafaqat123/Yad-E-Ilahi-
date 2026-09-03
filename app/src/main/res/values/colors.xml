@@ -9,4 +9,15 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="dim_text">#242424</color>
+
+    <!-- v2 palette: night-first, so the app feels like a prayer object in low light. -->
+    <color name="ground">#171E26</color>
+    <color name="raised">#1F2833</color>
+    <color name="raised_pressed">#27323F</color>
+    <color name="plaster">#EDE7DA</color>
+    <color name="pine">#2E6B57</color>
+    <color name="brass">#C8912F</color>
+    <color name="brass_dim">#6A4E1A</color>
+    <color name="muted">#7C8896</color>
+    <color name="hair">#1AEDE7DA</color>
 </resources>

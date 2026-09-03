@@ -1,212 +1,360 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Home. One glance, one tap: today's count, an unfinished dhikr to resume,
+     then four large tiles. Settings moved to the "میں" screen. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cream"
-    android:fillViewport="true">
+    android:background="@color/ground"
+    android:layoutDirection="rtl"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layoutDirection="rtl"
-        android:orientation="vertical"
-        android:paddingLeft="18dp"
-        android:paddingTop="28dp"
-        android:paddingRight="18dp"
-        android:paddingBottom="28dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="﷽"
-            android:textColor="@color/green_primary"
-            android:textSize="30sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textColor="@color/green_dark"
-            android:textSize="29sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:gravity="center"
-            android:text="@string/select_category_hint"
-            android:textColor="#716957"
-            android:textSize="16sp" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
         <LinearLayout
-            android:id="@+id/resumeCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/mode_card_background"
-            android:clickable="true"
-            android:focusable="true"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:paddingLeft="18dp"
+            android:paddingTop="20dp"
+            android:paddingRight="18dp"
+            android:paddingBottom="26dp">
+
             <TextView
-                android:id="@+id/resumeTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/green_dark"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                android:gravity="center"
+                android:text="@string/bismillah"
+                android:textColor="@color/brass"
+                android:textSize="32sp" />
+
             <TextView
-                android:id="@+id/resumeProgress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gold"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/plaster"
+                android:textSize="26sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/card_dark"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingTop="14dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="14dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/todayCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/brass"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/today_count_label"
+                        android:textColor="@color/muted"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/hair" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/streakCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/plaster"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/streak_label"
+                        android:textColor="@color/muted"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/resumeCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/tile_primary"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="15dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="15dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/resumeTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/plaster"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/resumeProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textColor="@color/brass"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/start_dhikr_heading"
+                android:textColor="@color/muted"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/postPrayerTile"
+                    android:layout_width="0dp"
+                    android:layout_height="112dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tile_primary"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="bottom"
+                    android:orientation="vertical"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:paddingBottom="13dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/post_prayer_short"
+                        android:textColor="@color/plaster"
+                        android:textSize="21sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/post_prayer_beads"
+                        android:textColor="@color/brass"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/istighfarTile"
+                    android:layout_width="0dp"
+                    android:layout_height="112dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tile_primary"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="bottom"
+                    android:orientation="vertical"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:paddingBottom="13dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/istighfar_short"
+                        android:textColor="@color/plaster"
+                        android:textSize="21sp" />
+
+                    <TextView
+                        android:id="@+id/istighfarTileSub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/muted"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/tasbeehTile"
+                    android:layout_width="0dp"
+                    android:layout_height="112dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tile_primary"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="bottom"
+                    android:orientation="vertical"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:paddingBottom="13dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tasbeeh_short"
+                        android:textColor="@color/plaster"
+                        android:textSize="21sp" />
+
+                    <TextView
+                        android:id="@+id/tasbeehTileSub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/muted"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tawhidTile"
+                    android:layout_width="0dp"
+                    android:layout_height="112dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tile_primary"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="bottom"
+                    android:orientation="vertical"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:paddingBottom="13dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tawhid_short"
+                        android:textColor="@color/plaster"
+                        android:textSize="21sp" />
+
+                    <TextView
+                        android:id="@+id/tawhidTileSub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/muted"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/more_heading"
+                android:textColor="@color/muted"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:id="@+id/duasRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/row_quiet"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="14dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="14dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/daily_duas_short"
+                    android:textColor="@color/plaster"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/daily_duas_sub"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/simpleRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/row_quiet"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="14dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="14dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/simple_counter_short"
+                    android:textColor="@color/plaster"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/simple_counter_sub"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
         </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/dailyRoutineCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/mode_card_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="میرے روزانہ کے اذکار" android:textColor="@color/green_dark" android:textSize="23sp" android:textStyle="bold" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="اپنا روزانہ ذکر، دعا اور استغفار کا معمول بنائیں" android:textColor="#6F675A" android:textSize="15sp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/challengeCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/mode_card_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="چیلنج قبول کریں" android:textColor="@color/green_dark" android:textSize="23sp" android:textStyle="bold" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="تجویز کردہ یا اپنی پسند کا ذکر بطور چیلنج مقرر کریں" android:textColor="#6F675A" android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/historyCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/mode_card_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="روزانہ کی ہسٹری" android:textColor="@color/green_dark" android:textSize="23sp" android:textStyle="bold" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="مکمل اور ادھورے اذکار تاریخ کے ساتھ محفوظ" android:textColor="#6F675A" android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/dailyDuasCategoryCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/mode_card_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="روزمرہ دعائیں" android:textColor="@color/green_dark" android:textSize="23sp" android:textStyle="bold" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="دعائیں، درست ترجمہ اور دل نشین تفہیم" android:textColor="#6F675A" android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/postPrayerCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/mode_card_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/post_prayer_title" android:textColor="@color/green_dark" android:textSize="23sp" android:textStyle="bold" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="33  •  33  •  34" android:textColor="@color/gold" android:textSize="17sp" android:textStyle="bold" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/post_prayer_subtitle" android:textColor="#6F675A" android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/istighfarCategoryCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/mode_card_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/istighfar_category_title" android:textColor="@color/green_dark" android:textSize="23sp" android:textStyle="bold" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/istighfar_category_subtitle" android:textColor="#6F675A" android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/tasbeehCategoryCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/mode_card_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/tasbeeh_category_title" android:textColor="@color/green_dark" android:textSize="23sp" android:textStyle="bold" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/tasbeeh_category_subtitle" android:textColor="#6F675A" android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/tawhidCategoryCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/mode_card_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/tawhid_category_title" android:textColor="@color/green_dark" android:textSize="23sp" android:textStyle="bold" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/tawhid_category_subtitle" android:textColor="#6F675A" android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/simpleCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/mode_card_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="vertical">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/simple_counter_title" android:textColor="@color/green_dark" android:textSize="23sp" android:textStyle="bold" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/simple_counter_subtitle" android:textColor="#746B5B" android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/settings_panel_background"
-            android:orientation="vertical">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/feedback_settings" android:textColor="@color/green_dark" android:textSize="20sp" android:textStyle="bold" />
-            <Switch android:id="@+id/vibrationSwitch" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:checked="true" android:gravity="center_vertical" android:layoutDirection="rtl" android:text="@string/vibration" android:textColor="@color/text_dark" android:textSize="16sp" />
-            <Switch android:id="@+id/soundSwitch" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:checked="true" android:gravity="center_vertical" android:layoutDirection="rtl" android:text="@string/completion_sound" android:textColor="@color/text_dark" android:textSize="16sp" />
-            <Button android:id="@+id/vibrationTestButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:background="@drawable/button_secondary" android:minHeight="58dp" android:text="@string/vibration_test" android:textAllCaps="false" android:textColor="@color/text_dark" android:textSize="16sp" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:gravity="center"
-            android:lineSpacingExtra="4dp"
-            android:text="@string/home_safety_hint"
-            android:textColor="#6F675A"
-            android:textSize="14sp" />
-    </LinearLayout>
-</ScrollView>
+    <include layout="@layout/view_bottom_bar" />
+</LinearLayout>

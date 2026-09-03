@@ -84,4 +84,38 @@
 بند</string>
     <string name="home_short">⌂
 مرکزی</string>
+
+    <!-- v2 home + "میں" screen -->
+    <string name="bismillah">﷽</string>
+    <string name="today_count_label">آج کی گنتی</string>
+    <string name="streak_label">مسلسل دن</string>
+    <string name="total_days_label">کل دن</string>
+    <string name="start_dhikr_heading">ذکر شروع کریں</string>
+    <string name="more_heading">اور</string>
+    <string name="post_prayer_short">نماز کے بعد</string>
+    <string name="post_prayer_beads">33 • 33 • 34</string>
+    <string name="istighfar_short">استغفار</string>
+    <string name="tasbeeh_short">تسبیح و تحمید</string>
+    <string name="tawhid_short">توحید</string>
+    <string name="daily_duas_short">روزمرہ دعائیں</string>
+    <string name="daily_duas_sub">صبح، شام اور دن بھر کی دعائیں</string>
+    <string name="simple_counter_short">آزاد گنتی</string>
+    <string name="simple_counter_sub">اپنی پسند کا ذکر، بغیر ہدف</string>
+    <string name="tab_dhikr">ذکر</string>
+    <string name="tab_routine">معمول</string>
+    <string name="tab_challenge">چیلنج</string>
+    <string name="tab_me">میں</string>
+    <string name="profile_title">میں</string>
+    <string name="profile_subtitle">آپ کے ذکر کا حساب</string>
+    <string name="week_caption">پچھلے 7 دن</string>
+    <string name="row_incomplete">ادھورے اذکار</string>
+    <string name="row_history">ذکر کی تاریخ</string>
+    <string name="row_routine">میرے روزانہ کے اذکار</string>
+    <string name="row_challenge">چیلنج</string>
+    <string name="settings_heading">سیٹنگز</string>
+    <string name="no_dhikr_yet">ابھی کوئی ذکر شمار نہیں ہوا</string>
+    <string name="items_count">%1$d اذکار</string>
+    <string name="incomplete_count">%1$d ادھورے</string>
+    <string name="routine_progress">%1$d / %2$d مکمل</string>
+    <string name="challenge_active">%1$d جاری</string>
 </resources>

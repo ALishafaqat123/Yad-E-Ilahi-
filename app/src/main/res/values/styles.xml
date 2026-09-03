@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+    <!-- Night-first theme for the new screens (home, "میں"). -->
+    <style name="AppTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">@font/jameel_noori_nastaleeq_regular</item>
+        <item name="android:colorAccent">@color/brass</item>
+        <item name="android:colorPrimary">@color/ground</item>
+        <item name="android:windowBackground">@color/ground</item>
+        <item name="android:navigationBarColor">@color/ground</item>
+        <item name="android:statusBarColor">@color/ground</item>
+        <item name="android:textColorPrimary">@color/plaster</item>
+        <item name="android:textColorSecondary">@color/muted</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
+
+    <!-- The older list screens still use hardcoded dark text on cream, so they keep
+         the original light theme until they are redesigned in the next stage. -->
+    <style name="AppThemeLight" parent="android:style/Theme.Material.Light.NoActionBar">
         <item name="android:fontFamily">@font/jameel_noori_nastaleeq_regular</item>
         <item name="android:colorAccent">@color/green_primary</item>
         <item name="android:navigationBarColor">@color/green_dark</item>

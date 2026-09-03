@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bottom shortcut bar. Text only: the Nastaliq font has no icon glyphs, so
+     symbols would render as empty boxes on some devices. The active screen is
+     marked by a brass rule above its label. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_bar_bg"
+    android:layoutDirection="rtl"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/tabDhikr"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:paddingBottom="11dp">
+
+        <View
+            android:id="@+id/tabDhikrBar"
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
+
+        <TextView
+            android:id="@+id/tabDhikrLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="9dp"
+            android:text="@string/tab_dhikr"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tabRoutine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:paddingBottom="11dp">
+
+        <View
+            android:id="@+id/tabRoutineBar"
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
+
+        <TextView
+            android:id="@+id/tabRoutineLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="9dp"
+            android:text="@string/tab_routine"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tabChallenge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:paddingBottom="11dp">
+
+        <View
+            android:id="@+id/tabChallengeBar"
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
+
+        <TextView
+            android:id="@+id/tabChallengeLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="9dp"
+            android:text="@string/tab_challenge"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tabMe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:paddingBottom="11dp">
+
+        <View
+            android:id="@+id/tabMeBar"
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
+
+        <TextView
+            android:id="@+id/tabMeLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="9dp"
+            android:text="@string/tab_me"
+            android:textSize="17sp" />
+    </LinearLayout>
+</LinearLayout>
